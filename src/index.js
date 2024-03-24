@@ -1,12 +1,14 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import session from 'express-session'
+import MongoStore from 'connect-mongo'
 import cookieParser from 'cookie-parser'
 import messageModel from './models/messages.js'
 import indexRouter from './routes/indexRouter.js'
 import { Server } from 'socket.io'
 import { engine } from 'express-handlebars'
 import { __dirname } from './path.js'
-import session from 'express-session'
+
 
 //Configuraciones o declaraciones
 const app = express()
@@ -29,6 +31,11 @@ app.use(express.json())
 app.use(session({
     secret: "coderSecret",
     resave: true,
+    store: MongoStore.create({
+        mongoUrl: "mongodb+srv://lautarogerman3:coderhouse@cluster0.d91x4c9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+        
+        ttl: 15,
+    }),
     saveUninitialized: true
 }))
 app.use(cookieParser("claveSecreta"))
@@ -65,7 +72,7 @@ app.get('/session', (req, res) => {
     }
 })
 
-app.get('/login', (req, res) => {
+app.post('/login', (req, res) => {
     const { email, password } = req.body
 
     if (email == "admin@admin.com" && password == "1234") {
