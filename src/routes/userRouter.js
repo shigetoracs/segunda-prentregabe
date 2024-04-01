@@ -12,5 +12,4 @@ userRouter.get('/', async (req, res) => {
     }
 })
 
-
 export default userRouter

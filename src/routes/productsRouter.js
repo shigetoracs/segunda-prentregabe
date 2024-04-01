@@ -1,5 +1,5 @@
 import { Router } from "express";
-import productModel from "../models/product.js"
+import productModel from "../models/product.js";
 
 const productsRouter = Router()
 
@@ -20,10 +20,8 @@ productsRouter.get('/', async (req, res) => {
         const query = metFilter != undefined ? { [metFilter]: filter } : {};
         const ordQuery = ord !== undefined ? { price: ord } : {};
 
-        console.log(query)
-
         const prods = await productModel.paginate(query, { limit: limi, page: pag, sort: ordQuery });
-        console.log(ordQuery)
+        
         res.status(200).send(prods)
 
     } catch (error) {
