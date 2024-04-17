@@ -24,7 +24,7 @@ const server = app.listen(PORT, () => {
 const io = new Server(server)
 
 //Connection DB
-mongoose.connect("mongodb+srv://lautarogerman3:<pw>@cluster0.d91x4c9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect("mongodb+srv://lautarogerman3:coderhouse@cluster0.d91x4c9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
     .then(() => console.log("DB is connected"))
     .catch(e => console.log(e))
     
@@ -34,7 +34,7 @@ app.use(session({
     secret: "coderSecret",
     resave: true,
     store: MongoStore.create({
-        mongoUrl: "mongodb+srv://lautarogerman3:<pw>@cluster0.d91x4c9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+        mongoUrl: "mongodb+srv://lautarogerman3:coderhouse@cluster0.d91x4c9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
         
         ttl: 15,
     }),
