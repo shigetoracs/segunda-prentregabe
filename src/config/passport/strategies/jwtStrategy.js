@@ -1,6 +1,6 @@
 import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
 import { userModel } from "../../../models/user.js";
-
+import varenv from "../../../dotenv.js";
 const cookieExtractor = req => {
     console.log(req.cookies)
     //{} no hay cookies != esta cookie no existe
@@ -10,6 +10,7 @@ const cookieExtractor = req => {
     return token
 }
 
+console.log(varenv)
 const jwtOptions = {
     jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
     //jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken() esperar el token de JWT desde la peticion
