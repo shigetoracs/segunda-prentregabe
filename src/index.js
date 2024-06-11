@@ -24,7 +24,7 @@ const server = app.listen(PORT, () => {
 const io = new Server(server)
 
 //Connection DB
-mongoose.connect(varenv.mongo_url)
+mongoose.connect('mongodb+srv://lautarogerman3:coderhouse@cluster0.d91x4c9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
     .then(() => console.log("DB is connected"))
     .catch(e => console.log(e))
 
@@ -32,15 +32,15 @@ mongoose.connect(varenv.mongo_url)
 app.use(express.json())
 
 app.use(session({
-    secret: varenv.session_secret,
+    secret: coderSecret,
     resave: true,
     store: MongoStore.create({
-        mongoUrl: varenv.mongo_url,
+        mongoUrl: 'mongodb+srv://lautarogerman3:coderhouse@cluster0.d91x4c9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
         ttl: 60 * 60
     }),
     saveUninitialized: true
 }))
-app.use(cookieParser(varenv.cookies_secret))
+app.use(cookieParser(claveSecreta))
 app.engine('handlebars', engine())
 app.set('view engine', 'handlebars')
 app.set('views', __dirname + '/views')
